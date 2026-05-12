@@ -1,5 +1,6 @@
 # TPC-analysis V13 
 https://doi.org/10.5281/zenodo.20122464
+
 Este repositorio contiene un script de R diseñado para el análisis automatizado de Curvas de Rendimiento Térmico (TPCs) utilizando el modelo no lineal de Briere et al. (1999). Basado tambien en el script publicado por Rezende y colaboradores en el 2019. La herramienta está optimizada para investigadores en biología y ecología que necesitan procesar múltiples especies y variables de rendimiento de manera simultánea y reproducible.
 
 🚀 Características Principales
