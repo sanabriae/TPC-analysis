@@ -1,0 +1,52 @@
+# 📘 Manual Técnico de Variables: TPC-Analyzer V13
+
+Este documento detalla los 16 parámetros calculados por la **Herramienta Universal V13**. 
+Cada variable se estima mediante un proceso de **Bootstrap No Paramétrico**, lo que permite obtener no solo el valor promedio, 
+sino también su incertidumbre estadística (SE, SD o VAR).
+
+---
+
+### 📋 Glosario de Variables Calculadas
+
+El script genera una tabla de salida donde cada una de estas variables cuenta con su media y su medida de dispersión asociada.
+
+| Variable | Nombre en Excel | Definición Biológica |
+| :--- | :--- | :--- |
+| **1. Coeficiente Q10** | `Q10` | Sensibilidad térmica. Mide la tasa de cambio del rendimiento al aumentar la temperatura en 10°C antes del óptimo. |
+| **2. Constante de Briere** | `Cm` | Parámetro de escala del modelo (a). Representa la eficiencia de la respuesta térmica. |
+| **3. Umbral Térmico (Tmax)** | `Tth` | *Thermal Threshold*. El límite superior teórico donde el rendimiento colapsa a cero ($CT_{max}$ estimado). |
+| **4. Asimetría (d)** | `d` | Representa la caída abrupta de la curva: la diferencia térmica entre la $T_{opt}$ y la $T_{max}$. |
+| **5. Temperatura Óptima** | `Topt` | La temperatura exacta donde el organismo alcanza su máximo desempeño fisiológico. |
+| **6. Rendimiento Máximo** | `Pmax` | El valor más alto de rendimiento registrado o estimado. |
+| **7. Rendimiento al 50%** | `P50` | El valor de rendimiento que corresponde a la mitad del $P_{max}$. |
+| **8. Límite Inferior TB50** | `T50_min` | Temperatura mínima a la cual el organismo aún mantiene el 50% de su rendimiento. |
+| **9. Límite Superior TB50** | `T50_max` | Temperatura máxima a la cual el organismo aún mantiene el 50% de su rendimiento. |
+| **10. Rendimiento al 80%** | `P80` | El valor de rendimiento que corresponde al 80% del $P_{max}$ (umbral de alto desempeño). |
+| **11. Límite Inferior TB80** | `T80_min` | Temperatura mínima para mantener un desempeño óptimo (80%). |
+| **12. Límite Superior TB80** | `T80_max` | Temperatura máxima para mantener un desempeño óptimo (80%). |
+| **13. Ancho Térmico 80%** | `TB_80` | *Thermal Breadth 80*. El rango total de grados (°C) donde el animal rinde de forma óptima. |
+| **14. Ancho Térmico 50%** | `TB_50` | *Thermal Breadth 50*. El rango total de grados (°C) donde el animal es funcionalmente activo. |
+| **15. T-mínima Ajustada** | `Tmin_ajust` | El límite crítico inferior ($CT_{min}$) estimado por el ajuste del modelo de Briere. |
+| **16. Área Bajo la Curva** | `AUC` | **Rendimiento Integral**. El volumen total bajo la curva que representa la capacidad metabólica total disponible. |
+
+---
+
+### 🔍 Visualización de Parámetros en el Gráfico
+
+La V13 no solo calcula estos valores, sino que los utiliza para construir una representación visual rigurosa:
+
+* **La Curva Roja:** Se dibuja utilizando los promedios de `Tmin_ajust`, `Tth` y `Cm`.
+* **El Sombreado:** Utiliza los límites `T80_min`/`T80_max` (Verde) o `T50_min`/`T50_max` (Naranja) para mostrar el nicho térmico funcional.
+* **El AUC:** Representa matemáticamente todo el espacio encerrado entre la línea roja y el eje X, integrando desde la temperatura mínima a la máxima.
+
+
+
+---
+
+### 💡 Importancia del AUC en la V13
+El cálculo del **AUC** es la novedad más importante. Mientras que la $T_{opt}$ te dice *dónde* está el pico,
+el **AUC** te dice *qué tan potente* es el organismo en total. Una especie con un AUC mayor tiene una mayor "reserva" 
+de rendimiento para enfrentar cambios térmicos ambientales, independientemente de si su pico es más alto o más bajo que otra.
+
+---
+*Este manual de variables es parte integral de la documentación del TPC-Analyzer V13.*
