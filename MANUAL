@@ -1,0 +1,73 @@
+# 📘 Manual de Usuario: TPC-Analyzer V13
+## Herramienta Avanzada para el Análisis de Curvas de Rendimiento Térmico
+
+Este manual proporciona instrucciones detalladas para instalar, configurar y ejecutar el script **TPC-Analyzer V13**. 
+Esta herramienta está diseñada para investigadores que buscan un análisis de TPCs con rigor estadístico,
+integración de métricas acumulativas (AUC) y visualización comparativa.
+
+---
+
+### 1. REQUISITOS PREVIOS
+
+#### Software Necesario:
+* **R (versión 4.0 o superior):** Lenguaje base de computación estadística.
+* **RStudio:** Entorno de desarrollo recomendado para ejecutar el script de manera interactiva.
+
+#### Librerías de R:
+El script utiliza el gestor `pacman` para instalar y cargar automáticamente las siguientes dependencias:
+* `tidyverse`: Para manipulación de datos y visualización avanzada (`ggplot2`).
+* `minpack.lm`: Motor para el ajuste de modelos no lineales mediante el algoritmo Levenberg-Marquardt.
+* `boot`: Para realizar las simulaciones de remuestreo (Bootstrap).
+* `readxl` y `openxlsx`: Para la gestión de archivos Excel de entrada y salida.
+
+---
+
+### 2. PREPARACIÓN DE LOS DATOS
+
+El archivo de entrada debe ser un **Excel (.xlsx)**. Los datos deben organizarse en **formato "largo"** (*long format*), 
+donde cada fila es una observación individual:
+
+| Temperatura | Especie | Mordida (N) | Velocidad (m/s) |
+| :--- | :--- | :--- | :--- |
+| 20 | Especie_A | 12.5 | 0.85 |
+| 25 | Especie_A | 18.2 | 0.92 |
+| 20 | Especie_B | 10.1 | 0.70 |
+
+* **Temperatura:** Valores numéricos del gradiente térmico probado.
+* **ID/Especie:** Columna que identifica los grupos. El script procesará cada especie de forma independiente.
+* **Variables de Rendimiento:** Puedes incluir tantas columnas de rendimiento como desees.
+
+---
+
+### 3. FLUJO DE TRABAJO (PASO A PASO)
+
+#### Paso 1: Inicialización
+Al ejecutar el script, se abrirá un explorador de archivos. Seleccione su archivo Excel. 
+El script establecerá automáticamente la carpeta de origen como el directorio de trabajo para guardar los resultados.
+
+#### Paso 2: Configuración de Variables en Consola
+Responda a las solicitudes en la consola de RStudio:
+1.  **Nombre de columna Temperatura:** Escriba el nombre exacto de la columna de temperatura.
+2.  **Nombre de columna Especie:** Escriba el nombre de la columna que identifica a los grupos.
+3.  **Variables de Rendimiento:** Ingrese los nombres de las columnas a analizar. Si son varias, sepárelas con coma (ej: `Mordida, Velocidad`).
+4.  **Prefijo de archivos:** Un nombre corto para identificar las salidas (ej: `Tesis_2024`).
+
+#### Paso 3: Configuración del Bootstrap e Incertidumbre
+* **Iteraciones (R):** Define cuántas veces se remuestrearán los datos.
+    * *Pruebas:* 100-200 iteraciones.
+    * *Resultados finales:* 1000 iteraciones.
+* **Medida de Dispersión:** Seleccione Error Estándar (1), Desviación (2) o Varianza (3). Esto se reflejará en la tabla resumen.
+
+#### Paso 4: Personalización Gráfica
+Podrá elegir si desea marcar la $T_{opt}$ y $P_{max}$ con líneas punteadas, y seleccionar qué rango de "Thermal Breadth" desea sombrear (TB80 o TB50).
+
+---
+
+### 5. SOLUCIÓN DE PROBLEMAS
+
+* **"Model failed to converge":** Ocurre si los datos no tienen una forma de curva clara. Asegúrese de tener suficientes puntos de datos (mínimo 7 sugeridos) que cubran tanto la subida como la caída del rendimiento.
+* **Los gráficos se ven cortados:** El script ajusta automáticamente los ejes basándose en los límites del bootstrap. Si los datos reales se salen del cuadro, verifique si hay *outliers* en su Excel.
+* **Error de permisos:** Asegúrese de que el archivo Excel de entrada no esté abierto en otra aplicación mientras corre el script.
+
+---
+*Desarrollado para el análisis avanzado de TPCs - Versión 13.*
