@@ -1,0 +1,35 @@
+# TPC-Analyzer V13: Advanced Thermal Performance Framework
+
+Este repositorio presenta la **V13** de una herramienta avanzada de análisis para Curvas de Rendimiento Térmico (**TPCs**). A diferencia de los scripts de ajuste convencionales, este entorno integra robustez estadística, visualización comparativa y métricas de rendimiento integral.
+
+## 🌟 ¿Qué hace única a la V13?
+
+Aunque se inspira en el rigor teórico de **Rezende & Bozinovic (2019)** respecto al análisis de incertidumbre térmica, esta herramienta introduce innovaciones metodológicas y funcionales clave para la investigación biológica:
+
+1.  **Integración Numérica de AUC (Area Under Curve):** Implementa el cálculo del rendimiento total acumulado del organismo mediante integración numérica directa sobre cada iteración del bootstrap. Esto permite evaluar la "capacidad metabólica total" del espécimen, una métrica fundamental para comparar estrategias generalistas vs. especialistas.
+2.  **Sincronización de Ejes por Bootstrap:** Posee un sistema de escalado inteligente que detecta los límites teóricos máximos estimados por el modelo. Esto asegura que todas las figuras de un proyecto sean 100% comparables visualmente, eliminando las distorsiones de escala comunes en el software tradicional.
+3.  **Hibridación de Modelos:** Utiliza la estabilidad matemática del modelo de **Briere et al. (1999)** potenciada por un motor de **Bootstrap No Paramétrico**, permitiendo obtener parámetros biológicos precisos ($T_{opt}$, $T_{max}$, $T_{min}$, $TB_{80}$) incluso en datasets de campo con alta varianza.
+
+## 📊 Métricas y Capacidades
+
+El script procesa automáticamente múltiples especies y variables de rendimiento de forma simultánea, generando:
+* **Parámetros Críticos:** Estimación de límites térmicos ($CT_{max}$, $CT_{min}$), óptimos ($T_{opt}$) y anchos de nicho ($TB_{50}$, $TB_{80}$).
+* **Análisis de Sensibilidad:** Cálculo de $Q_{10}$ derivado del modelo.
+* **Sombreado Dinámico:** Visualización de rangos de performance óptima directamente en los gráficos para una interpretación rápida.
+* **Exportación Multiformato:** Resultados listos para publicación en `.xlsx` y figuras en `.png` de alta resolución.
+
+## 🔬 Rigor Científico
+
+> "Esta herramienta ha sido desarrollada para cerrar la brecha entre el ajuste de curvas empírico y el análisis mecanístico profundo. Al integrar el cálculo de AUC y la gestión de incertidumbre, se facilita la comparación de estrategias térmicas con un nivel de precisión adecuado para publicaciones en revistas de alto impacto."
+
+## 🛠️ Instalación y Uso
+
+1.  Clona el repositorio o descarga el archivo `.R`.
+2.  Abre el script en **RStudio**.
+3.  Asegúrate de tener tus datos en un archivo `.xlsx` con columnas para **Temperatura**, **ID de especie** y **Variable de Rendimiento**.
+4.  Ejecuta el bloque inicial; el script es autoguiado y te solicitará los nombres de las columnas y preferencias de visualización mediante la consola.
+
+
+Si utilizas la **V13** en tu investigación o tesis, por favor cita el DOI generado por Zenodo vinculado a este repositorio.
+
+*Desarrollado para el análisis de variables de rendimiento físico (fuerza de mordida, velocidad, tasa metabólica) en herpetología y fisiología térmica.*
